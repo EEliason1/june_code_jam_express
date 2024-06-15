@@ -1,0 +1,21 @@
+.header {
+  max-width: 1480px;
+  width: 100%;
+  /* max-height: 1480px; */
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  position: relative;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 40px 80px 75px;
+}
+
+.header__image {
+  max-width: 1233px;
+  margin: 40px 0 0;
+  top: 124px;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+}

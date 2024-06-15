@@ -1,0 +1,18 @@
+.App {
+  max-width: 1480px;
+  background-color: #fff;
+  color: #000;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-style: normal;
+  position: relative;
+  margin: 0 auto;
+}
+
+.App__content {
+  max-width: 1520px;
+  min-height: 822px;
+  width: 100%;
+  margin: 0 auto;
+}
