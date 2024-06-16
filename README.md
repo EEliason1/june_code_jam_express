@@ -41,4 +41,5 @@ npm i vite
 npm run dev
 ```
 
-## Link to deployed project
+## Link to deployed project (Front End Will Not Load)
+tripsdonequick.us.to
