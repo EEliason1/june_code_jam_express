@@ -21,7 +21,7 @@ import sys
 try:
     df = pd.read_csv('uscities.csv')
 except:
-    df = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/uscities.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam_express/main/server/scripts/uscities.csv')
 
 # create column names to keep
 columns = ['city', 'state_id', 'lng', 'lat']
