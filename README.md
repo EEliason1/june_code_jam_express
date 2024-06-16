@@ -25,3 +25,20 @@ pip install -r requirements.txt
     - Numpy - ```pip install numpy```
     - Python-TSP - ```pip install python-tsp```
 
+## How to run locally
+
+- clone the repo using
+```bash
+git clone https://github.com/EEliason1/june_code_jam_express
+```
+- open the cloned repo in VSCode and navigate to the client directory with
+```bash
+cd client
+```
+- install vite and run the project with (the server doesn't connect correctly at the time of writing this)
+```bash
+npm i vite
+npm run dev
+```
+
+## Link to deployed project
