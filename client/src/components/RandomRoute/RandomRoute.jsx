@@ -1,11 +1,15 @@
 import "./RandomRoute.css";
 
-import badRouteImage from "../../assets/random_route.png";
+import { possibleRoutes } from "../../utils/constants.js";
 
 function RandomRoute({}) {
   return (
     <div className="badRoute" id="maps">
-      <img className="badRoute__image" src={badRouteImage} alt="random_route" />
+      <img
+        className="badRoute__image"
+        src={possibleRoutes[0].image}
+        alt="random_route"
+      />
       <div className="badRoute__text">
         <h2 className="badRoute__title">Traveling without planning?</h2>
         <ul className="badRoute__lists">

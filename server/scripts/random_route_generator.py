@@ -6,102 +6,71 @@ import random
 # import visualization packages
 import plotly.express as px
 import plotly.graph_objects as go
+import polyline
+import googlemaps
 
 # import distance calculation packages
 from geopy.distance import geodesic
 
-# import model packages
-from python_tsp.exact import solve_tsp_dynamic_programming
-
-# import sys to get input from app
-import sys
-
-# download csv of cities
+# Load CSV files
 
 try:
-    df = pd.read_csv('uscities.csv')
+    df = pd.read_csv('cities.csv')
 except:
     df = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/uscities.csv')
 
-# create column names to keep
-columns = ['city', 'state_id', 'lng', 'lat']
+try:
+    df_distances = pd.read_csv('distances.csv', index_col=0)
+except:
+    df_distances = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/distances.csv', index_col=0)
 
-# select columns
-df = df[columns]
+try:
+    df_times = pd.read_csv('times.csv', index_col=0)
+except:
+    df_times = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/times.csv', index_col=0)
 
-# re-order columns
-df = df[['city', 'state_id', 'lng', 'lat']]
-    
-# save list for cities
-cities_states = {'Denver':'CO', 'Tampa':'FL', 'Atlanta':'GA', 'Seattle':'WA', 'New York':'NY', 'Los Angeles':'CA', 'Chicago':'IL', 'Dallas':'TX'}
+try:    
+    df_directions = pd.read_csv('directions.csv', index_col=0)
+except:
+    df_directions = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/directions.csv', index_col=0)
 
-# create a list of indexes to keep
-keep = []
+# Create cities list
+cities = df_distances.columns.tolist()
 
-# loop through cities and states, keeping those that match
-for city, state in cities_states.items():
-    try:
-        keep.append(df[(df['city'] == city) & (df['state_id'] == state)].index[0])
-    except:
-        print(f'{city} not found in the dataset')
 
-# create a new dataframe with only the cities we want
-df = df.loc[keep]
+# save route as list
+random_route = []
 
-# Reset the index
-df.reset_index(drop=True, inplace=True)
+# loop cities and randomly
+while len(cities) > 0:
+    current_city = random.choice(cities)
+    random_route.append(current_city)
+    cities.remove(current_city)
 
-# Create new columns to store the distances
-for city in cities_states.keys():
-    df[city] = np.nan
+# create a function to calculate the distance of a route
+def calculate_distance_time(route):
+    total_distance = 0
+    total_time = 0
+    for i in range(len(route) - 1):
+        city = route[i]
+        next_city = route[i+1]
+        total_distance += df_distances.loc[city, next_city]
 
-# Loop through each city
-for city in cities_states.keys():
-    # Get the coordinates of the current city
-    city_coords = (df[df['city'] == city]['lat'].values[0], df[df['city'] == city]['lng'].values[0])
+        total_time += df_times.loc[city, next_city]
 
-    # Loop through each row in the dataframe
-    for i in range(len(df)):
-        # Calculate the distance between the city and the row
-        row_coords = (df['lat'][i], df['lng'][i])
-        distance = geodesic(row_coords, city_coords).miles
+    total_time = round(total_time, 2) # Convert time to hours
 
-        # Add the distance to the dataframe
-        df.at[i, city] = distance
+    return round(total_distance,2), total_time
 
-# List of all cities
-cities = list(cities_states.keys())
+# calculate distance and time of random route
+distance_random, time_random = calculate_distance_time(random_route)
 
-# Create a function that can be looped in the app
-def generate_random_route(cities_states):
-    # List of all cities
-    cities = list(cities_states.keys())
-    
-    # Save route as list
-    random_route = []
+# show distance and time of random route
+# use distance_random variable to print value in miles")
+# use time_random to print value in hours")
 
-    # Loop through cities and randomly select each one
-    while cities:
-        current_city = random.choice(cities)
-        random_route.append(current_city)
-        cities.remove(current_city)
-    
-    return random_route
-
-# Generate and show the random route
-random_route = generate_random_route(cities_states)
-print(random_route)
-
-# calculate distance_random of route
-distance_random = 0
-
-# loop through each city in the route
-for i in range(len(random_route) - 1):
-    # calculate the distance_random between the two cities
-    distance_random += df[random_route[i]][df['city'] == random_route[i + 1]].values[0]
-    distance_random = round(distance_random, 2)
-
-# call the distance_random variable to get the distance
+# Initiate google
+gmaps = googlemaps.Client(key='AIzaSyDR5DDYR19EbaSYj8aceLPkoxLq--BsD48')
 
 # Set colors
 ocean = '#CBF3F0'
@@ -110,123 +79,144 @@ river = '#CBF3F0'
 land = '#FFBF69'
 text_cities = 'Black'
 text_distance = '#FFFFFF'
-lines = 'black'
 marker = '#FF9F1C'
-mode = 'plotly_dark' # 'plotly', 'plotly_white', 'plotly_dark', 'ggplot2', 'seaborn', 'simple_white', 'none'
+mode = 'plotly_dark'
 
 # Set borders
 width = 1000
 height = 800
 
-# Text positions for labels
-text_positions = {
-    'Chicago': 'bottom right',
-    'Los Angeles': 'bottom left',
-    'Dallas': 'top right',
-    'Atlanta': 'bottom center',
-    'Denver': 'bottom left',
-    'Tampa': 'bottom right',
-    'Seattle': 'top left',
-    'New York': 'top left'
-}
+# Create mapping function
+def map_route(city_list, title, total_distance, total_time):
+    # Create the map
+    fig = go.Figure()
 
-# Create the map for the random route
-fig_random = go.Figure()
+    # Define text positions for city labels
+    text_positions = {city_list[0]: 'top right', city_list[-1]: 'top left'}  # Adjust as needed
 
-# Add the cities to the map
-for city in random_route:
-    city_data = df[df['city'] == city]
-    if not city_data.empty:
-        text_position = text_positions.get(city, 'top right')
-        fig_random.add_trace(go.Scattergeo(
-            lon=city_data['lng'].values,
-            lat=city_data['lat'].values,
-            mode='markers+text',
-            marker=dict(size=10, color=marker),
-            text=city,
-            textposition=text_position,
-            textfont=dict(color=text_cities),
-            name=city,
-            showlegend=False  # Hide city names from legend
-        ))
+    # Add the cities to the map
+    for city in city_list:
+        city_data = df[df['city'] == city]
+        if not city_data.empty:
+            text_position = text_positions.get(city, 'top right')
+            fig.add_trace(go.Scattergeo(
+                lon=city_data['lng'].values,
+                lat=city_data['lat'].values,
+                mode='markers+text',
+                marker=dict(size=10, color=marker),
+                text=city,
+                textposition=text_position,
+                textfont=dict(color=text_cities),
+                name=city,
+                showlegend=False  # Hide city names from legend
+            ))
 
-# Change line to a different color for each leg of the route
-colors = px.colors.qualitative.Plotly
+    # Change line to a different color for each leg of the route
+    colors = px.colors.qualitative.Plotly
 
-# Add the lines between the cities
-for i in range(len(random_route) - 1):
-    city_data_1 = df[df['city'] == random_route[i]]
-    city_data_2 = df[df['city'] == random_route[i + 1]]
-    if not city_data_1.empty and not city_data_2.empty:
-        fig_random.add_trace(go.Scattergeo(
-            lon=[city_data_1['lng'].values[0], city_data_2['lng'].values[0]],
-            lat=[city_data_1['lat'].values[0], city_data_2['lat'].values[0]],
-            mode='lines',
-            line=dict(width=2, color=colors[i % len(colors)]),
-            name=f'Leg {i + 1}',
-            showlegend=True  # Show only leg names in legend
-        ))
+    # Add the lines between the cities using the previously stored directions
+    for i in range(len(city_list) - 1):
+        city = city_list[i]
+        other_city = city_list[i + 1]
 
-# Update the layout
-fig_random.update_layout(
-    title={
-        'text': 'Random Route',
-        'y': 0.85,  # Move the title to just above the map
-        'x': 0.5,  # Center the title
-        'xanchor': 'center',
-        'yanchor': 'top'
-    },
-    showlegend=True,
-    legend=dict(
-        y=0.5,  # Position the legend midway down the plot
-        yanchor="middle"
-    ),
-    geo=dict(
-        scope='north america',  # restrict the map to the USA
-        showland=True,
-        showcountries=True,
-        showocean=True,
-        oceancolor=ocean,
-        landcolor=land,
-        countrywidth=0.5,
-        subunitwidth=0.5,
-        showlakes=True,
-        lakecolor=lake,
-        showsubunits=True,
-        showrivers=True,
-        rivercolor=river,
-    ),
-    width=width,  # make the map larger
-    height=height,  # make the map larger
-    margin=dict(l=10, r=10, t=40, b=10)  # increase top margin for title
-)
+        directions = df_directions.loc[city, other_city]
 
-# Restrict map to the US
-fig_random.update_geos(lataxis_range=[25, 50], lonaxis_range=[-125, -65])
+        if directions:
+            # Decode the polyline from the stored directions
+            result = gmaps.directions(
+                (df[df['city'] == city]['lat'].values[0], df[df['city'] == city]['lng'].values[0]),
+                (df[df['city'] == other_city]['lat'].values[0], df[df['city'] == other_city]['lng'].values[0]),
+                mode='driving'
+            )
+            points = polyline.decode(result[0]['overview_polyline']['points'])
+            lats, lons = zip(*points)
 
-# Add label for distance of route
-fig_random.add_annotation(
-    x=0.5,
-    y=0.1,
-    showarrow=False,
-    text=f'Total Distance: {distance_random:.2f} miles',
-    font=dict(size=20, color=text_distance),
-    xref='paper',
-    yref='paper'
-)
+            fig.add_trace(go.Scattergeo(
+                lon=lons,
+                lat=lats,
+                mode='lines',
+                line=dict(width=2, color=colors[i % len(colors)]),
+                name=f'Leg {i + 1}',
+                showlegend=True  # Show only leg names in legend
+            ))
+        else:
+            print(f"No result for leg {city} to {other_city}")
 
-# Set background color
-fig_random.update_layout(
-    plot_bgcolor='rgba(0, 0, 0, 0)',
-    paper_bgcolor='rgba(0, 0, 0, 0)',
-    font=dict(color='white')
-)
+    # Update the layout
+    fig.update_layout(
+        title={
+            'text': title,
+            'y': 0.85,  # Move the title to just above the map
+            'x': 0.5,  # Center the title
+            'xanchor': 'center',
+            'yanchor': 'top'
+        },
+        showlegend=True,
+        legend=dict(
+            y=0.5,  # Position the legend midway down the plot
+            yanchor="middle"
+        ),
+        geo=dict(
+            scope='north america',  # restrict the map to the USA
+            showland=True,
+            showcountries=True,
+            showocean=True,
+            oceancolor=ocean,
+            landcolor=land,
+            countrywidth=0.5,
+            subunitwidth=0.5,
+            showlakes=True,
+            lakecolor=lake,
+            showsubunits=True,
+            showrivers=True,
+            rivercolor=river,
+        ),
+        width=width,  # make the map larger
+        height=height,  # make the map larger
+        margin=dict(l=10, r=10, t=40, b=10)  # increase top margin for title
+    )
 
+    # Restrict map to the US
+    fig.update_geos(lataxis_range=[25, 50], lonaxis_range=[-125, -65])
 
-# Limit ability to scroll across the map
-fig_random.update_layout(dragmode=False)
+    # Add annotation for distance of route
+    fig.add_annotation(
+        x=0.5,
+        y=0.1,
+        showarrow=False,
+        text=f'Total Distance: {total_distance} miles',
+        font=dict(size=20, color=text_distance),
+        xref='paper',
+        yref='paper'
+    )
+
+    # Add annotation for time of route
+    fig.add_annotation(
+        x=0.5,
+        y=0.05,
+        showarrow=False,
+        text=f'Total Time: {total_time} hours',
+        font=dict(size=20, color=text_distance),
+        xref='paper',
+        yref='paper'
+    )
+
+    # Set background color
+    fig.update_layout(
+        plot_bgcolor='rgba(0, 0, 0, 0)',
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        font=dict(color='white')
+    )
+
+    # Limit ability to scroll across the map
+    fig.update_layout(dragmode=False)
+
+    return fig
+
+# Show map
+fig_random = map_route(random_route, 'Random Route',distance_random, time_random)
 
 # Show the map
-fig_random.show()
+# fig_random.show()
 
 # call the fig_random variable for the randomly generated map. code can be looped to generate a new route every x seconds in JS

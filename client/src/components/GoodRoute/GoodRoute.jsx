@@ -1,8 +1,21 @@
 import "./GoodRoute.css";
+import React from "react";
 
-import GoodRouteImage from "../../assets/random_route.png";
+import { possibleRoutes } from "../../utils/constants.js";
 
-function GoodRoute({}) {
+function GoodRoute({ selectedRoute }) {
+  const city = selectedRoute.startingCity;
+  const circular = selectedRoute.circularPath;
+
+  const filteredRoutes = possibleRoutes.find((route) => {
+    if (!city || !circular) {
+      return route.startingCity === "Random" && route.circularPath === "no";
+    }
+    return route.startingCity === city && route.circularPath === circular;
+  });
+
+  const chosenRoute = filteredRoutes?.image;
+
   return (
     <div className="goodRoute">
       <div className="goodRoute__content">
@@ -34,11 +47,7 @@ function GoodRoute({}) {
             </h3>
           </div>
         </div>
-        <img
-          src={GoodRouteImage}
-          alt="best_route"
-          className="goodRoute__image"
-        />
+        <img src={chosenRoute} alt="best_route" className="goodRoute__image" />
       </div>
     </div>
   );

@@ -5,11 +5,11 @@ import RandomRoute from "../RandomRoute/RandomRoute.jsx";
 import CityPass from "../CityPass/CityPass.jsx";
 import AboutUs from "../AboutUs/AboutUs.jsx";
 
-function Main({ handleCardClick }) {
+function Main({ handleCardClick, selectedRoute }) {
   return (
     <div className="main">
       <RandomRoute />
-      <GoodRoute />
+      <GoodRoute selectedRoute={selectedRoute}/>
       <CityPass handleCardClick={handleCardClick} />
       <AboutUs />
     </div>

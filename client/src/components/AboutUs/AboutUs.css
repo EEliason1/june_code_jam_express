@@ -78,6 +78,7 @@
     position: absolute;
     z-index: -1;
     top: -152px;
+    left: 35.5%;
     margin: 0 auto;
     overflow: hidden;
   }

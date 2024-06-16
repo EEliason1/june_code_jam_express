@@ -8,8 +8,13 @@ import Footer from "../Footer/Footer.jsx";
 
 function App() {
   const [pythonEfficientMap, setPythonEfficientMap] = useState([{}]);
+  const [pythongRandomMap, setPythonRandomMap] = useState([{}]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedRoute, setSelectedRoute] = useState({
+    startingCity: "",
+    circularPath: "",
+  });
 
   const addModalEventListeners = () => {
     document.addEventListener("keydown", handleEscClose);
@@ -48,6 +53,14 @@ function App() {
     }
   };
 
+  const handleFormSubmit = (cityInfo, handleStateReset) => {
+    setSelectedRoute({
+      startingCity: cityInfo.startingCity,
+      circularPath: cityInfo.circularPath,
+    });
+    handleStateReset();
+  };
+
   useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
@@ -57,8 +70,8 @@ function App() {
   return (
     <div className="App">
       <div className="App__content">
-        <Header />
-        <Main handleCardClick={handleCardClick} />
+        <Header handleFormSubmit={handleFormSubmit} />
+        <Main handleCardClick={handleCardClick} selectedRoute={selectedRoute}/>
         <Footer />
         <CityPassModal
           activeModal={activeModal}

@@ -157,4 +157,106 @@ const linkedInInfo = [
   },
 ];
 
-export { cityList, linkedInInfo };
+const possibleRoutes = [
+  {
+    startingCity: "Random",
+    circularPath: "no",
+    image: new URL("../assets/routes/random_route.png", import.meta.url).href,
+  },
+  {
+    startingCity: "Denver",
+    circularPath: "yes",
+    image: new URL("../assets/routes/denver_circular.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Tampa",
+    circularPath: "yes",
+    image: new URL("../assets/routes/tampa_circular.png", import.meta.url).href,
+  },
+  {
+    startingCity: "Atlanta",
+    circularPath: "yes",
+    image: new URL("../assets/routes/atlanta_circular.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Seattle",
+    circularPath: "yes",
+    image: new URL("../assets/routes/seattle_circular.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "New York",
+    circularPath: "yes",
+    image: new URL("../assets/routes/new_york_circular.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Los Angeles",
+    circularPath: "yes",
+    image: new URL("../assets/routes/los_angeles_circular.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Chicago",
+    circularPath: "yes",
+    image: new URL("../assets/routes/chicago_circular.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Dallas",
+    circularPath: "yes",
+    image: new URL("../assets/routes/dallas_circular.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Denver",
+    circularPath: "no",
+    image: new URL("../assets/routes/denver_shortest.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Tampa",
+    circularPath: "no",
+    image: new URL("../assets/routes/tampa_shortest.png", import.meta.url).href,
+  },
+  {
+    startingCity: "Atlanta",
+    circularPath: "no",
+    image: new URL("../assets/routes/atlanta_shortest.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Seattle",
+    circularPath: "no",
+    image: new URL("../assets/routes/seattle_shortest.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "New York",
+    circularPath: "no",
+    image: new URL("../assets/routes/new_york_shortest.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Los Angeles",
+    circularPath: "no",
+    image: new URL("../assets/routes/los_angeles_shortest.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Chicago",
+    circularPath: "no",
+    image: new URL("../assets/routes/chicago_shortest.png", import.meta.url)
+      .href,
+  },
+  {
+    startingCity: "Dallas",
+    circularPath: "no",
+    image: new URL("../assets/routes/dallas_shortest.png", import.meta.url)
+      .href,
+  },
+];
+
+export { cityList, linkedInInfo, possibleRoutes };
