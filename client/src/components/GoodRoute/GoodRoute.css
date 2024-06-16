@@ -1,0 +1,75 @@
+.goodRoute {
+  background-color: #ff9f1c;
+}
+
+.goodRoute__content {
+  display: flex;
+  direction: column;
+  position: relative;
+}
+.goodRoute__board {
+  background-color: #ffd193;
+  max-width: 828px;
+  max-height: 780px;
+  border-radius: 10px;
+  margin: 25px 150px;
+  z-index: 0;
+  padding: 25px;
+}
+.goodRoute__title {
+  color: #a25e00;
+  font-size: 72px;
+  line-height: 76px;
+  margin: 25px;
+  display: flex;
+  justify-content: center;
+  font-family: InknutAntiqua, Arial, sans-serif;
+  font-family: InknutAntiqua, Arial, sans-serif;
+}
+.goodRoute__cities-board {
+  background-color: #fff;
+  max-width: 470px;
+  margin: 10px 75px;
+  padding: 10px 65px;
+  border-radius: 10px;
+}
+.goodRoute__cities-board_text {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+.goodRoute__cities-board_cities {
+  font-size: 32px;
+  line-height: 45px;
+}
+.goodRoute__cities-board_city {
+  font-family: inder, Arial, sans-serif;
+}
+.goodRoute__estimate-board {
+  background-color: #fff;
+  width: 470px;
+  margin: 10px 75px;
+  padding: 25px 65px;
+  border-radius: 10px;
+}
+.goodRoute__estimate-board_text {
+  font-size: 32px;
+  line-height: 40px;
+  margin: 0;
+  font-family: Inder, Arial, sans-serif;
+}
+.goodRoute__estimate-board_textNumber {
+  font-size: 40px;
+  line-height: 40px;
+  color: #ff0000;
+}
+.goodRoute__image {
+  display: flex;
+  max-width: 907px;
+  max-height: 490px;
+  align-self: center;
+  z-index: 1;
+  position: absolute;
+  right: 100px;
+  border-radius: 10px;
+  border-style: solid 5px #a25e00;
+}

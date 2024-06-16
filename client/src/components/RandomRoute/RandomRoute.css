@@ -1,0 +1,50 @@
+.badRoute {
+    background-color: #828282;
+    display: flex;
+    justify-content: space-around;
+    padding: 35px 60px;
+  }
+  
+  .badRoute__image {
+    display: flex;
+    max-width: 437px;
+    max-height: 246px;
+    align-self: center;
+  }
+  .badRoute__text {
+    display: flex;
+    padding-left: 30px;
+    flex-direction: column;
+    color: #fff;
+  }
+  
+  .badRoute__title {
+    font-size: 40px;
+    line-height: 45px;
+    font-weight: normal;
+    margin: 0;
+  }
+  
+  .badRoute__lists {
+    margin-top: 20px;
+  }
+  
+  .badRoute__list {
+    font-size: 24px;
+    line-height: 40px;
+  }
+  
+  .badRoute__estimateTime {
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 45px;
+    margin: 0;
+  }
+  
+  .badRoute__estimateTimeNumber {
+    font-size: 40px;
+    font-weight: normal;
+    color: #ff0000;
+    line-height: 45px;
+  }
+  

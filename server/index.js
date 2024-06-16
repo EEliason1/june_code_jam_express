@@ -8,7 +8,7 @@ app.get("/api", (req, res) => {
 });
 
 // Optimal route api setup
-app.get("/map", (req, res) => {
+app.get("/", (req, res) => {
   let dataToSend;
 
   //Find optimal route info

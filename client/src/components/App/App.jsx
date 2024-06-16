@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import Header from "../Header/Header.jsx";
+import Main from "../Main/Main.jsx";
 
 function App() {
   const [pythonEfficientMap, setPythonEfficientMap] = useState([{}]);
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       <div className="App__content">
         <Header />
+        <Main />
       </div>
     </div>
   );

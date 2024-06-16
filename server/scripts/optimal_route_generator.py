@@ -28,22 +28,22 @@ import sys
 try:
     df = pd.read_csv('cities.csv')
 except:
-    df = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/uscities.csv')
+    df = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam_express/main/server/scripts/uscities.csv')
 
 try:
     df_distances = pd.read_csv('distances.csv', index_col=0)
 except:
-    df_distances = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/distances.csv', index_col=0)
+    df_distances = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam_express/main/server/scripts/distances.csv', index_col=0)
 
 try:
     df_times = pd.read_csv('times.csv', index_col=0)
 except:
-    df_times = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/times.csv', index_col=0)
+    df_times = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam_express/main/server/scripts/times.csv', index_col=0)
 
 try:    
     df_directions = pd.read_csv('directions.csv', index_col=0)
 except:
-    df_directions = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam/main/notebooks/directions.csv', index_col=0)
+    df_directions = pd.read_csv('https://raw.githubusercontent.com/EEliason1/june_code_jam_express/main/server/scripts/directions.csv', index_col=0)
 
 # Create cities list
 cities = df_distances.columns.tolist()

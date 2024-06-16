@@ -1,0 +1,29 @@
+.cities {
+    background-color: #fff;
+    padding: 20px;
+  }
+  .cities__title {
+    color: #a25e00;
+    font-size: 72px;
+    font-family: InknutAntiqua, Arial, sans-serif;
+    line-height: 75px;
+    margin: 0;
+  }
+  .cities__decoration-line {
+    background-color: #cbf3f0;
+    max-width: 470px;
+    margin: 0 25px;
+    padding: 10px 0;
+    border-radius: 10px;
+  }
+  .cities__subtitle {
+    color: #ff9f1c;
+    font-size: 40px;
+    line-height: 42px;
+    margin: 10px 155px;
+    font-family: inder, Arial, sans-serif;
+  }
+  .cities__cards {
+    margin: 20px;
+  }
+  
