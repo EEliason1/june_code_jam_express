@@ -62,7 +62,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("/api")
+    fetch("/findRoute")
       .then((res) => res.json())
       .then((data) => setPythonEfficientMap(data));
   }, []);
@@ -71,7 +71,7 @@ function App() {
     <div className="App">
       <div className="App__content">
         <Header handleFormSubmit={handleFormSubmit} />
-        <Main handleCardClick={handleCardClick} selectedRoute={selectedRoute}/>
+        <Main handleCardClick={handleCardClick} selectedRoute={selectedRoute} />
         <Footer />
         <CityPassModal
           activeModal={activeModal}

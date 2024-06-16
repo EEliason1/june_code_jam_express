@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const optimalRoute = require("../controllers/optimalRoute.js");
+const { optimalPython } = require("../controllers/optimalRoute.js");
 
-router.post("/", optimalRoute);
+router.post("/", optimalPython);
 
 module.exports = router;

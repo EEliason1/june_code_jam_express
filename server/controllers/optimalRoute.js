@@ -1,4 +1,3 @@
-const path = require("path");
 const { spawn } = require("child_process");
 
 const optimalPython = (req, res) => {
@@ -20,9 +19,8 @@ const optimalPython = (req, res) => {
 
   pythonProcess.on("exit", (code) => {
     console.log("Code", code);
-    res.send(dataToSend);
+    JSON.parse(dataToSend);
   });
-  console.log(res);
 };
 
-module.exports =  optimalPython;
+module.exports = { optimalPython };
