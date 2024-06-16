@@ -189,13 +189,13 @@ const possibleRoutes = [
   {
     startingCity: "New York",
     circularPath: "yes",
-    image: new URL("../assets/routes/new_york_circular.png", import.meta.url)
+    image: new URL("../assets/routes/newyork_circular.png", import.meta.url)
       .href,
   },
   {
     startingCity: "Los Angeles",
     circularPath: "yes",
-    image: new URL("../assets/routes/los_angeles_circular.png", import.meta.url)
+    image: new URL("../assets/routes/losangeles_circular.png", import.meta.url)
       .href,
   },
   {
@@ -236,13 +236,13 @@ const possibleRoutes = [
   {
     startingCity: "New York",
     circularPath: "no",
-    image: new URL("../assets/routes/new_york_shortest.png", import.meta.url)
+    image: new URL("../assets/routes/newyork_shortest.png", import.meta.url)
       .href,
   },
   {
     startingCity: "Los Angeles",
     circularPath: "no",
-    image: new URL("../assets/routes/los_angeles_shortest.png", import.meta.url)
+    image: new URL("../assets/routes/losangeles_shortest.png", import.meta.url)
       .href,
   },
   {

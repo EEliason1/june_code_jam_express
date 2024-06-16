@@ -41,9 +41,9 @@ function GoodRoute({ selectedRoute }) {
               Estimated&nbsp;Distance:
               <br />
               <span className="goodRoute__estimate-board_textNumber">
-                10000.00&nbsp;
+                Below Map&nbsp;
               </span>
-              miles
+              {/* miles */}
             </h3>
           </div>
         </div>

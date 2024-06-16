@@ -23,7 +23,7 @@ function RandomRoute({}) {
         </ul>
         <h2 className="badRoute__estimateTime">
           Estimated distance for random route is
-          <span className="badRoute__estimateTimeNumber"> 99999.99</span> miles.
+          <span className="badRoute__estimateTimeNumber"> 10300</span> miles.
         </h2>
       </div>
     </div>
