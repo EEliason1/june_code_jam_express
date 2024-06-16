@@ -21,24 +21,24 @@ function CityPassModal({ handleCloseClick, activeModal, selectedCard }) {
               <h2 className="modal__list-title">Fun Things To Do:</h2>
               <ul className="modal__list">
                 <li className="modal__list-item">
-                <p className="modal__list-text">1:&nbsp;</p>
-                <p className="modal__list-text">{funThings[1]}</p>
+                  <p className="modal__list-text">1:&nbsp;</p>
+                  <p className="modal__list-text">{funThings[1]}</p>
                 </li>
                 <li className="modal__list-item">
-                <p className="modal__list-text">2:&nbsp;</p>
-                <p className="modal__list-text">{funThings[2]}</p>
+                  <p className="modal__list-text">2:&nbsp;</p>
+                  <p className="modal__list-text">{funThings[2]}</p>
                 </li>
                 <li className="modal__list-item">
-                <p className="modal__list-text">3:&nbsp;</p>
-                <p className="modal__list-text">{funThings[3]}</p>
+                  <p className="modal__list-text">3:&nbsp;</p>
+                  <p className="modal__list-text">{funThings[3]}</p>
                 </li>
                 <li className="modal__list-item">
-                <p className="modal__list-text">4:&nbsp;</p>
-                <p className="modal__list-text">{funThings[4]}</p>
+                  <p className="modal__list-text">4:&nbsp;</p>
+                  <p className="modal__list-text">{funThings[4]}</p>
                 </li>
                 <li className="modal__list-item">
-                <p className="modal__list-text">5:&nbsp;</p>
-                <p className="modal__list-text">{funThings[5]}</p>
+                  <p className="modal__list-text">5:&nbsp;</p>
+                  <p className="modal__list-text">{funThings[5]}</p>
                 </li>
                 <li className="modal__list-item">
                   <p className="modal__list-text">6:&nbsp;</p>
@@ -46,14 +46,16 @@ function CityPassModal({ handleCloseClick, activeModal, selectedCard }) {
                 </li>
               </ul>
             </div>
-            <button
-              className="modal__submit-button"
-              type="button"
-              href={selectedCard.cityLink}
-            //   onClick={handleCloseClick}
-            >
-              City Pass
-            </button>
+            <a href={selectedCard.cityLink} className="modal__link">
+              <button
+                className="modal__submit-button"
+                type="button"
+                href={selectedCard.cityLink}
+                onClick={handleCloseClick}
+              >
+                City Pass
+              </button>
+            </a>
           </div>
           <img
             src={selectedCard.image}

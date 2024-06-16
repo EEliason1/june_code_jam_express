@@ -3,7 +3,7 @@ import { linkedInInfo } from "../../utils/constants.js";
 
 function AboutUs({}) {
   return (
-    <div className="about">
+    <div className="about" id="about-us">
       <div className="about__circle"></div>
       <div className="about__circle about__circle_animation_blurred"></div>
       <div className="about__us">

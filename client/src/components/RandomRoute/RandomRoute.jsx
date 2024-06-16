@@ -4,7 +4,7 @@ import badRouteImage from "../../assets/random_route.png";
 
 function RandomRoute({}) {
   return (
-    <div className="badRoute">
+    <div className="badRoute" id="maps">
       <img className="badRoute__image" src={badRouteImage} alt="random_route" />
       <div className="badRoute__text">
         <h2 className="badRoute__title">Traveling without planning?</h2>

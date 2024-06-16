@@ -5,7 +5,7 @@ import CityCard from "../CityCards/CityCards.jsx";
 
 function CityPass({ handleCardClick }) {
   return (
-    <div className="cities">
+    <div className="cities" id="cities">
       <h2 className="cities__title">City Pass</h2>
       <div className="cities__decoration-line"></div>
       <p className="cities__subtitle">Fast, Fun, Afforable</p>
