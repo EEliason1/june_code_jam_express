@@ -1,0 +1,123 @@
+@keyframes pulsate {
+    0% {
+      opacity: 0%;
+    }
+    50% {
+      opacity: 60%;
+    }
+    100% {
+      opacity: 0%;
+      transform: scale(1.5);
+    }
+  }
+  
+  .about {
+    background-color: #cbf3f0;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    overflow: hidden;
+    max-width: 1440px;
+    width: 100%;
+  }
+  .about__us {
+  }
+  .about__us_title {
+    color: #ff9300;
+    font-size: 72px;
+    font-family: InknutAntiqua, Arial, sans-serif;
+    line-height: 75px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+  .about__description {
+    font-size: 20px;
+    line-height: 24px;
+    width: 1200px;
+    display: flex;
+    margin: 40px auto;
+    text-align: center;
+  }
+  .about__team {
+  }
+  .about__team_title {
+    color: #ff9300;
+    font-size: 72px;
+    font-family: InknutAntiqua, Arial, sans-serif;
+    line-height: 75px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+  .about__team_position {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .about__team_group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+  
+  .about__team_position_name {
+    font-family: InknutAntiqua, Arial, sans-serif;
+    color: #a25e00;
+    font-size: 48px;
+    line-height: 54px;
+  
+    margin: auto;
+  }
+  .about__circle {
+    width: 426px;
+    height: 426px;
+    border-radius: 50%;
+    background-color: #ffe7c7;
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    top: -152px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  .about__circle_animation_blurred {
+    animation: pulsate 1.3s linear infinite;
+  }
+  
+  .teammate {
+}
+.teammate__list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+.teammate__board {
+  background-color: #fff;
+  width: 280px;
+  height: 180px;
+  position: relative;
+  border-radius: 20px;
+  justify-content: center;
+  margin: 100px 20px 20px;
+}
+.teammate__photo {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  border: 10px #fff solid;
+  position: absolute;
+  left: 40px;
+  top: -100px;
+}
+.teammate__name {
+  font-size: 32px;
+  width: 280px;
+  font-family: inder, Arial, sans-serif;
+  text-decoration: none;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+}
