@@ -43,3 +43,7 @@ npm run dev
 
 ## Link to deployed project (Front End Will Not Load)
 tripsdonequick.us.to
+
+## Future Inprovement:
+- Load map at Front end (including list out the city)
+- scrolling search city instead type search
